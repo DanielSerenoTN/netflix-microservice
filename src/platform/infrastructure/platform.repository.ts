@@ -8,7 +8,13 @@ import IPlatformRepository from '../domain/core/repository.interface';
 export class PlatformRepository implements IPlatformRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async createPlatform(platform: PlatformDto): Promise<PlatformEntity> {
-    return this.prisma.platform.create(platform);
+  async create(platformDto: PlatformDto): Promise<PlatformEntity> {
+    const { name, icon } = platformDto;
+    return await this.prisma.platform.create({
+      data: {
+        name: name,
+        icon: icon,
+      },
+    });
   }
 }
