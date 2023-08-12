@@ -1,0 +1,15 @@
+#Ignore artifacts
+dist
+node_modules
+
+#Ignore vcs
+**/.git
+# Ignore specific file extensions
+*.yml
+*.md
+
+
+# Cause we don't care
+*.html
+
+.eslintrc.js
