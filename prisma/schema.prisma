@@ -9,11 +9,11 @@ datasource db {
 
 model Platform {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
+  name      String   @unique
   icon      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  deletedAt DateTime @db.Date
+  deletedAt DateTime? @db.Date
   Movie     Movie?   @relation(fields: [movieId], references: [id])
   movieId   String?  @db.ObjectId
 }
@@ -27,7 +27,7 @@ model Review {
   platformId String   @db.ObjectId
   createdAt  DateTime @default(now()) @db.Date
   updatedAt  DateTime @updatedAt
-  deletedAt  DateTime @db.Date
+  deletedAt  DateTime? @db.Date 
   Movie      Movie    @relation(fields: [movieId], references: [id])
 }
 
@@ -44,5 +44,5 @@ model Movie {
   reviews    Review[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
-  deletedAt  DateTime   @db.Date
+  deletedAt  DateTime?   @db.Date
 }
