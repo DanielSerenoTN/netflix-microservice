@@ -9,7 +9,7 @@ datasource db {
 
 model Platform {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
+  title     String   @unique
   icon      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -20,7 +20,7 @@ model Platform {
 
 model Review {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  rating     Float
+  score      Float
   author     String
   body       String
   movieId    String   @db.ObjectId

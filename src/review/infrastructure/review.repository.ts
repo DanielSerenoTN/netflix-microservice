@@ -8,7 +8,7 @@ import IReviewRepository from '../domain/core/review.interface';
 export class ReviewRepository implements IReviewRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async createReview(review: ReviewDto): Promise<ReviewEntity> {
-    return this.prisma.review.create(review);
+  async create(review: ReviewDto): Promise<ReviewEntity> {
+    return this.prisma.review.create({ data: review });
   }
 }
