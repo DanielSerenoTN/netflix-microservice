@@ -7,4 +7,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Platform {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  icon      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime @db.Date
+  Movie     Movie?   @relation(fields: [movieId], references: [id])
+  movieId   String?  @db.ObjectId
+}
 
+model Review {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  rating     Float
+  author     String
+  body       String
+  movieId    String   @db.ObjectId
+  platformId String   @db.ObjectId
+  createdAt  DateTime @default(now()) @db.Date
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime @db.Date
+  Movie      Movie    @relation(fields: [movieId], references: [id])
+}
+
+model Movie {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  title      String     @unique
+  slug       String
+  image      String
+  director   String
+  score      Float
+  budget     String
+  collection String
+  platforms  Platform[]
+  reviews    Review[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  deletedAt  DateTime   @db.Date
+}
