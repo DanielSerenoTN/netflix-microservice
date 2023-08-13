@@ -33,7 +33,7 @@ model Review {
 
 model Movie {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  title      String     @unique
+  title      String     
   slug       String
   image      String
   director   String
