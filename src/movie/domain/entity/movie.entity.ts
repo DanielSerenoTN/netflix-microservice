@@ -112,7 +112,7 @@ export default class MovieEntity {
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  platforms?: PlatformEntity[];
+  platforms: PlatformEntity[];
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })

@@ -7,6 +7,7 @@ import {
   Min,
   Max,
   IsOptional,
+  isArray,
 } from 'class-validator';
 
 export default class MovieDto {
@@ -92,4 +93,7 @@ export default class MovieDto {
   })
   @IsDefined()
   platforms: string[];
+
+  @IsOptional()
+  reviews: string[];
 }

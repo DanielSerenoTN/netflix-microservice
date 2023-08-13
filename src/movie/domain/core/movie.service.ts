@@ -24,7 +24,20 @@ export default class MovieService {
     return await this.movieRepository.update(updateMovieDto);
   }
   async getById(id: string): Promise<GroupedMovieDto> {
-    const res = await this.movieRepository.getById(id);
-    return this.movieMapper.transformMovieData(res);
+    const movie = await this.movieRepository.getById(id);
+    return this.movieMapper.transformMovieData(movie);
+  }
+  async clone(id: string): Promise<MovieEntity> {
+    const movie = await this.movieRepository.getById(id);
+    if(!movie){
+    
+    }
+    const movieDto = this.movieMapper.entityToDto(movie);
+    
+    return await this.movieRepository.create(movieDto);
+    
+  }
+  async getAll(page: string, limit: string): Promise<any> {
+    return this.movieRepository.getAll(page, limit);
   }
 }

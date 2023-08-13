@@ -1,13 +1,15 @@
-import { PrismaClient } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import MovieEntity from '../domain/entity/movie.entity';
 import MovieDto from '../application/model/movie.dto';
 import IMovieRepository from '../domain/core/repository.interface';
 import UpdateMovieDto from '../application/model/movie.update.dto';
+import PrismaService from '../../shared/prisma/prisma.service';
+import { PaginatorResponse, PrismaModels } from '../../shared/paginator/types/types';
+import { PaginatorService } from '../../shared/paginator/Paginator';
 
 @Injectable()
 export class MovieRepository implements IMovieRepository {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly prisma: PrismaService, private readonly paginatorService: PaginatorService) {}
 
   async create(movieDto: MovieDto): Promise<any> {
     const {
@@ -84,4 +86,7 @@ export class MovieRepository implements IMovieRepository {
       },
     });
   }
+  async getAll(page: string, limit: string): Promise<PaginatorResponse>{
+    return await this.paginatorService.paginate(PrismaModels.MOVIE ,page, limit)
+  };
 }
