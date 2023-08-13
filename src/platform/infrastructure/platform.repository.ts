@@ -9,10 +9,10 @@ export class PlatformRepository implements IPlatformRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
   async create(platformDto: PlatformDto): Promise<PlatformEntity> {
-    const { name, icon } = platformDto;
+    const { title, icon } = platformDto;
     return await this.prisma.platform.create({
       data: {
-        name: name,
+        title: title,
         icon: icon,
       },
     });

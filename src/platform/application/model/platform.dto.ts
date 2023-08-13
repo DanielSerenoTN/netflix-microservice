@@ -5,14 +5,21 @@ export default class PlatformDto {
   @IsDefined()
   @IsNotEmpty()
   @IsString()
-  @ApiProperty({ description: 'Name of the platform' })
-  name: string;
+  @ApiProperty({
+    description: 'Name of the platform',
+    example: 'HBO MAX',
+    required: true,
+    nullable: false,
+  })
+  title: string;
   @IsDefined()
   @IsNotEmpty()
   @IsString()
-  @ApiProperty({ description: 'Icon of the platform' })
+  @ApiProperty({
+    description: 'Icon of the platform',
+    example: 'icon.jpg',
+    required: true,
+    nullable: false,
+  })
   icon: string;
-
-  @ApiProperty({ description: 'Deletion timestamp' })
-  deletedAt: Date | null;
 }

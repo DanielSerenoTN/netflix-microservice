@@ -1,29 +1,37 @@
-import {
-  IsString,
-  IsUrl,
-  IsDate,
-  IsOptional,
-  IsMongoId,
-} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import MovieEntity from 'src/movie/domain/entity/movie.entity';
 
 export default class PlatformEntity {
-  @IsMongoId()
+  @IsNotEmpty()
   @IsString()
-  id: string;
+  @ApiProperty({ description: 'ID of the platform' })
+  id!: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty({ description: 'Title of the platform' })
+  title!: string;
 
   @IsString()
-  name: string;
+  @ApiProperty({ description: 'Icon of the platform' })
+  icon!: string;
 
-  @IsUrl()
-  icon: string;
+  @ApiProperty({ description: 'Creation timestamp' })
+  createdAt?: Date;
 
-  @IsDate()
-  createdAt: Date;
+  @ApiProperty({ description: 'Update timestamp' })
+  updatedAt?: Date;
 
-  @IsDate()
-  updatedAt: Date;
+  @ApiProperty({ description: 'Deletion timestamp' })
+  @IsOptional()
+  deletedAt?: Date | null;
 
   @IsOptional()
-  @IsDate()
-  deletedAt?: Date | null;
+  @ApiProperty({ description: 'Movie associated with the platform' })
+  movie?: MovieEntity;
+
+  @IsOptional()
+  @ApiProperty({ description: 'ID of the associated movie' })
+  movieId?: string | null;
 }
