@@ -8,15 +8,19 @@ import {
   Max,
   IsDate,
   IsOptional,
+  IsMongoId,
 } from 'class-validator';
 
-export default class Review {
+export default class ReviewEntity {
   @ApiProperty({
-    description: 'ID of the review',
+    description: 'ID of the movie',
     example: '64d7b6878b53321d0bb152bb',
     required: true,
     nullable: false,
   })
+  @IsDefined()
+  @IsNotEmpty()
+  @IsMongoId()
   id: string;
 
   @ApiProperty({
