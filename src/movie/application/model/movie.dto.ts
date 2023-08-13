@@ -86,11 +86,10 @@ export default class MovieDto {
   collection: string;
   @ApiProperty({
     description: 'Platforms where the film is available',
-    example: ["64d7d3c56a734de4a6e570b7"],
+    example: ['64d7d3c56a734de4a6e570b7'],
     required: true,
     nullable: false,
   })
   @IsDefined()
-  platforms: string[]; 
-
+  platforms: string[];
 }

@@ -18,8 +18,10 @@ export class MovieController {
   async update(@Body() updateMovieDto: UpdateMovieDto): Promise<MovieEntity> {
     return this.movieService.update(updateMovieDto);
   }
-  @Get("/:id")
-  async getById(@Param('id', MongoIdValidationPipe) id: string): Promise<GroupedMovieDto> {
+  @Get('/:id')
+  async getById(
+    @Param('id', MongoIdValidationPipe) id: string,
+  ): Promise<GroupedMovieDto> {
     return await this.movieService.getById(id);
   }
 }

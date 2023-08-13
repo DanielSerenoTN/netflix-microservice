@@ -11,16 +11,17 @@ export class MovieRepository implements IMovieRepository {
 
   async create(movieDto: MovieDto): Promise<any> {
     const {
-        title,
-        slug,
-        image,
-        director,
-        score,
-        budget,
-        collection,
-        platforms
-    } =  movieDto;
-    return await this.prisma.movie.create({data:{
+      title,
+      slug,
+      image,
+      director,
+      score,
+      budget,
+      collection,
+      platforms,
+    } = movieDto;
+    return await this.prisma.movie.create({
+      data: {
         title: title,
         slug: slug,
         image: image,
@@ -29,30 +30,31 @@ export class MovieRepository implements IMovieRepository {
         budget: budget,
         collection: collection,
         platforms: {
-          connect: platforms.map((id:string) => ({ id })),
-        }
-    },include: {
+          connect: platforms.map((id: string) => ({ id })),
+        },
+      },
+      include: {
         platforms: true,
       },
-      });
+    });
   }
 
   async update(updateMovieDto: UpdateMovieDto): Promise<MovieEntity> {
     const {
-        id,
-        title,
-        slug,
-        image,
-        director,
-        score,
-        budget,
-        collection,
-        platforms,
-        reviews
-    } =  updateMovieDto;
+      id,
+      title,
+      slug,
+      image,
+      director,
+      score,
+      budget,
+      collection,
+      platforms,
+      reviews,
+    } = updateMovieDto;
     return await this.prisma.movie.update({
-        where:{id:id},
-        data:{
+      where: { id: id },
+      data: {
         title: title,
         slug: slug,
         image: image,
@@ -61,21 +63,25 @@ export class MovieRepository implements IMovieRepository {
         budget: budget,
         collection: collection,
         platforms: {
-          connect: platforms.map((id:string) => ({ id })),
+          connect: platforms.map((id: string) => ({ id })),
         },
         reviews: {
-            connect: reviews.map((id:string) => ({ id })),
-          }
-    },include: {
-        platforms: true,
-        reviews: true
+          connect: reviews.map((id: string) => ({ id })),
+        },
       },
-      });
+      include: {
+        platforms: true,
+        reviews: true,
+      },
+    });
   }
-async getById(id: string): Promise<any> {
-return await this.prisma.movie.findFirst({where: {id:id},include: {
-    platforms: true,
-    reviews: true
-  },})
-}
+  async getById(id: string): Promise<any> {
+    return await this.prisma.movie.findFirst({
+      where: { id: id },
+      include: {
+        platforms: true,
+        reviews: true,
+      },
+    });
+  }
 }
