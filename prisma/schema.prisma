@@ -20,7 +20,7 @@ model Platform {
 
 model Review {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  score      Float
+  score     Float
   author     String
   body       String
   movieId    String   @db.ObjectId
