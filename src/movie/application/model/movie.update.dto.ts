@@ -1,9 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsDefined,
-  IsNotEmpty,
-  IsMongoId,
-} from 'class-validator';
+import { IsDefined, IsNotEmpty, IsMongoId } from 'class-validator';
 import MovieDto from './movie.dto';
 
 export default class UpdateMovieDto extends MovieDto {

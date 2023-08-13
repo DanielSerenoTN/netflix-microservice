@@ -8,7 +8,7 @@ import MovieMapper from '../domain/incoming/mapper/movie.mapper';
 @Module({
   imports: [],
   controllers: [MovieController],
-  providers: [MovieService, MovieRepository, PrismaClient,MovieMapper],
+  providers: [MovieService, MovieRepository, PrismaClient, MovieMapper],
   exports: [MovieService],
 })
 export default class MovieModule {}

@@ -14,7 +14,6 @@ import {
 import PlatformEntity from '../../../platform/domain/entity/platform.entity';
 import ReviewEntity from '../../../review/domain/entity/review.entity';
 
-
 export default class MovieEntity {
   @ApiProperty({
     description: 'ID of the movie',
@@ -26,7 +25,7 @@ export default class MovieEntity {
 
   @ApiProperty({
     description: 'Title of the movie',
-    example: "Megalodon 3",
+    example: 'Megalodon 3',
     required: true,
     nullable: false,
   })
@@ -37,7 +36,7 @@ export default class MovieEntity {
 
   @ApiProperty({
     description: 'Slug of the movie',
-    example: "megalodon-3",
+    example: 'megalodon-3',
     required: true,
     nullable: false,
   })
@@ -96,16 +95,16 @@ export default class MovieEntity {
   collection: string;
   @ApiProperty({
     description: 'Ids of the platform being reviewed',
-    example:  [
-        {
-            "id": "64d856f23cf92be6742e747b",
-            "title": "Plataforma 2",
-            "icon": "icono-plataforma-2",
-            "createdAt": "2023-08-13T04:07:14.363Z",
-            "updatedAt": "2023-08-13T06:18:34.743Z",
-            "deletedAt": null,
-            "movieId": "64d875baf430a5a429a5f732"
-        }
+    example: [
+      {
+        id: '64d856f23cf92be6742e747b',
+        title: 'Plataforma 2',
+        icon: 'icono-plataforma-2',
+        createdAt: '2023-08-13T04:07:14.363Z',
+        updatedAt: '2023-08-13T06:18:34.743Z',
+        deletedAt: null,
+        movieId: '64d875baf430a5a429a5f732',
+      },
     ],
     required: true,
     nullable: false,
@@ -117,7 +116,7 @@ export default class MovieEntity {
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  reviews?: ReviewEntity[]; 
+  reviews?: ReviewEntity[];
 
   @ApiProperty({
     description: 'Creation timestamp',
