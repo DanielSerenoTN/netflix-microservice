@@ -92,4 +92,7 @@ export default class MovieDto {
   })
   @IsDefined()
   platforms: string[];
+
+  @IsOptional()
+  reviews: string[];
 }

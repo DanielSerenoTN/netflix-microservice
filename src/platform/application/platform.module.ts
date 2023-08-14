@@ -1,4 +1,4 @@
-import { Module, forwardRef } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { PlatformController } from './platform.controller';
 import PlatformService from '../domain/core/platform.service';
 import { PlatformRepository } from '../infrastructure/platform.repository';
