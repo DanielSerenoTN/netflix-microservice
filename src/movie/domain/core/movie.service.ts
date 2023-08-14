@@ -31,50 +31,32 @@ export default class MovieService {
   }
   async update(updateMovieDto: UpdateMovieDto): Promise<MovieEntity> {
     try {
-      const updatedMovie = await this.movieRepository.update(updateMovieDto);
-      if (!updatedMovie) {
-        throw new NotFoundException(
-          `Movie with ID ${updateMovieDto.id} not found`,
-        );
-      }
-      return updatedMovie;
+      return await this.movieRepository.update(updateMovieDto);
     } catch (e) {
       throw new InternalServerErrorException('Failed to update movie');
     }
   }
   async getById(id: string): Promise<GroupedMovieDto> {
-    try {
-      const movie = await this.movieRepository.getById(id);
-      if (!movie) {
-        throw new NotFoundException(`Movie with ID ${id} not found`);
-      }
-      return movie;
-    } catch (e) {
-      throw new InternalServerErrorException('Failed to get movie');
+    const movie = await this.movieRepository.getById(id);
+    if (!movie) {
+      throw new NotFoundException(`Movie with ID ${id} not found`);
     }
+    return movie;
   }
   async clone(id: string): Promise<MovieEntity> {
-    try {
-      const movie = await this.movieRepository.getById(id);
-      if (!movie) {
-        throw new NotFoundException(`Movie with ID ${id} not found`);
-      }
-      const movieDto = this.movieMapper.entityToDto(movie);
-
-      return await this.movieRepository.create(movieDto);
-    } catch (e) {
-      throw new InternalServerErrorException('Failed to clone movie');
+    const movie = await this.movieRepository.getById(id);
+    if (!movie) {
+      throw new NotFoundException(`Movie with ID ${id} not found`);
     }
+    const movieDto = this.movieMapper.entityToDto(movie);
+
+    return await this.movieRepository.create(movieDto);
   }
   async getAll(page: string, limit: string): Promise<PaginatorResponse> {
-    try {
-      const response = await this.movieRepository.getAll(page, limit);
-      if (!response) {
-        throw new NotFoundException('No movies found');
-      }
-      return response;
-    } catch (e) {
-      throw new InternalServerErrorException('Failed to fetch movies');
+    const response = await this.movieRepository.getAll(page, limit);
+    if (!response) {
+      throw new NotFoundException('No movies found');
     }
+    return response;
   }
 }

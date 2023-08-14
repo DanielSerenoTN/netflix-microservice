@@ -26,7 +26,7 @@ export default class ReviewDto {
   @IsMongoId()
   @ApiProperty({
     description: 'ID of the platform being reviewed',
-    example: '64d7d3c56a734de4a6e570b7',
+    example: '64d7b6878b53321d0bb152dd',
     required: true,
     nullable: false,
   })
