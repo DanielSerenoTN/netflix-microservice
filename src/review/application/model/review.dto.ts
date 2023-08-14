@@ -15,7 +15,7 @@ export default class ReviewDto {
   @IsMongoId()
   @ApiProperty({
     description: 'ID of the movie being reviewed',
-    example: '64d7b6878b53321d0bb152cc',
+    example: '64d856f23cf92be6742e7479',
     required: true,
     nullable: false,
   })
@@ -26,7 +26,7 @@ export default class ReviewDto {
   @IsMongoId()
   @ApiProperty({
     description: 'ID of the platform being reviewed',
-    example: '64d7b6878b53321d0bb152dd',
+    example: '64d7d3c56a734de4a6e570b7',
     required: true,
     nullable: false,
   })

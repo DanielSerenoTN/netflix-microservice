@@ -8,10 +8,10 @@ export default class PlatformService {
   constructor(private readonly platformRepository: PlatformRepository) {}
 
   async create(platformDto: PlatformDto): Promise<PlatformEntity> {
-    try {
-      return await this.platformRepository.create(platformDto);
-    } catch (e) {
-      throw new InternalServerErrorException('Could not create platform');
-    }
+    // try {
+    return await this.platformRepository.create(platformDto);
+    // } catch (e) {
+    //   throw new InternalServerErrorException('Could not create platform');
+    // }
   }
 }
