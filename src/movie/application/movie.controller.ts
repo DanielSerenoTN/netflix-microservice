@@ -1,13 +1,26 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import MovieService from '../domain/core/movie.service';
 import MovieDto from './model/movie.dto';
 import MovieEntity from '../domain/entity/movie.entity';
 import { MongoIdValidationPipe } from '../../shared/pipes/mongo-id-validation.pipe';
 import UpdateMovieDto from './model/movie.update.dto';
 import GroupedMovieDto from '../domain/incoming/model/movie.dto';
-import { ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { PaginatorResponse } from '../../shared/paginator/types/types';
+import { AuthGuard } from '@nestjs/passport';
 
+@ApiBearerAuth('JWT')
+@ApiBearerAuth('API-KEY')
+@UseGuards(AuthGuard(['jwt', 'api-key']))
 @Controller('movies')
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}

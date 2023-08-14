@@ -1,10 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsDefined,
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-} from 'class-validator';
+import { IsDefined, IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export default class AuthDto {
   @IsDefined()
@@ -27,5 +22,4 @@ export default class AuthDto {
     nullable: false,
   })
   password: string;
-
 }

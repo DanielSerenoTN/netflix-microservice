@@ -21,6 +21,22 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Netflix Microservice Documentation')
     .setDescription('Netflix API description')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'JWT authorization value',
+      },
+      'JWT',
+    )
+    .addApiKey(
+      {
+        type: 'apiKey',
+        description: 'API KEY authorization value',
+      },
+      'API-KEY',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('swagger', app, document);

@@ -10,12 +10,10 @@ export class AuthController {
   @ApiOperation({
     summary: 'Generate Demo Token',
     description:
-      'This endpoint generates an authentication token for practice and skill demonstration purposes. '
+      'This endpoint generates an authentication token for practice and skill demonstration purposes. ',
   })
   @Post()
   async create(@Body() authDto: AuthDto): Promise<string> {
     return this.authService.generateJWT(authDto);
   }
 }
-
-
