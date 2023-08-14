@@ -7,7 +7,6 @@ import {
   Min,
   Max,
   IsOptional,
-  isArray,
 } from 'class-validator';
 
 export default class MovieDto {

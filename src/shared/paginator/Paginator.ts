@@ -1,6 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PaginatorResponse, PrismaModels } from './types/types';
-import  PrismaService from '../prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
+import { PrismaModels } from './types/types';
+import PrismaService from '../prisma/prisma.service';
 
 @Injectable()
 export class PaginatorService {
@@ -22,10 +22,10 @@ export class PaginatorService {
     const data = await this.db[model].findMany({
       skip: skipVal,
       take: limitNumber,
-      include:{
-        platforms:true,
-        reviews:true,
-      }
+      include: {
+        platforms: true,
+        reviews: true,
+      },
     });
 
     return {
