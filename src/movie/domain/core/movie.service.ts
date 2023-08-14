@@ -43,8 +43,15 @@ export default class MovieService {
     }
   }
   async getById(id: string): Promise<GroupedMovieDto> {
-    const movie = await this.movieRepository.getById(id);
-    return this.movieMapper.transformMovieData(movie);
+    try {
+      const movie = await this.movieRepository.getById(id);
+      if (!movie) {
+        throw new NotFoundException(`Movie with ID ${id} not found`);
+      }
+      return movie;
+    } catch (e) {
+      throw new InternalServerErrorException('Failed to get movie');
+    }
   }
   async clone(id: string): Promise<MovieEntity> {
     try {
